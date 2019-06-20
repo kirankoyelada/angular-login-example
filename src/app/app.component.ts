@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import {Router} from '@angular/router';
+import { ProjectService } from './services/projects.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +10,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  project:Observable<any>;
   ngOnInit(): void {
     console.log(window.location.href);
    if(window.location.href.indexOf('?postLogout=true')>0){
@@ -19,7 +22,7 @@ export class AppComponent implements OnInit {
    }
   }
   title = 'test-login-app';
-  constructor(private authService:AuthService,private router:Router){
+  constructor(private authService:AuthService,private router:Router,private projectService:ProjectService){
 
   }
   login(){
@@ -32,5 +35,10 @@ export class AppComponent implements OnInit {
 
   getToken(){
     console.log(this.authService.getAccessToken());
+  }
+  getProjects(){
+    if(this.authService.isLoggedIn){
+      this.projectService.getProjects().subscribe(x=>this.project=x);
+    }
   }
 }

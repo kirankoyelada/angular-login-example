@@ -1,3 +1,10 @@
 <button (click)="login()">Login</button>
 <button (click)="logout()">Logout</button>
 <button (click)="getToken()">Get Token</button>
+<button (click)="getProjects()">Get Projects</button>
+<hr>
+<table>
+    <tr *ngFor="let x of project">
+        <td>{{x.name }}</td>
+    </tr>
+</table>

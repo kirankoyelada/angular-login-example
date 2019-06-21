@@ -1,10 +1,10 @@
-<button (click)="login()">Login</button>
+<app-header-nav></app-header-nav>
+<!-- <button (click)="login()">Login</button>
 <button (click)="logout()">Logout</button>
 <button (click)="getToken()">Get Token</button>
 <button (click)="getProjects()">Get Projects</button>
+<button *ngIf="isLogged()">Is Logged??</button> -->
 <hr>
-<table>
-    <tr *ngFor="let x of project">
-        <td>{{x.name }}</td>
-    </tr>
-</table>
+<div *ngIf="isLogged()">
+        <app-projects></app-projects>
+</div>

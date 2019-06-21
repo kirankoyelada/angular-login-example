@@ -3,11 +3,16 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './services/auth.interceptor';
+import { HeaderNavComponent } from './header-nav/header-nav.component';
+import { ProjectsComponent } from './projects/projects.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderNavComponent,
+    ProjectsComponent
   ],
   imports: [
     BrowserModule,
@@ -17,7 +22,9 @@ import { HttpClientModule } from '@angular/common/http';
       {path:'', redirectTo:'root', pathMatch:'full'}
     ])
   ],
-  providers: [],
+  providers: [
+    {provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

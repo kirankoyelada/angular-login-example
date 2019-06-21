@@ -1,0 +1,19 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Angular Login Example</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">Projects</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+          <button *ngIf="!isLoggedIn()" (click)="login()" class="btn btn-outline-primary btn-space"><span class="glyphicon glyphicon-user"></span> Login</button>
+        </li>
+        <li>
+            <button *ngIf="isLoggedIn()" (click)="logout()" class="btn btn-outline-primary"><span class="glyphicon glyphicon-off"></span> Logout</button>
+        </li>
+    </ul>
+  </div>
+</nav>

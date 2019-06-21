@@ -13,7 +13,8 @@ export class AuthService {
             scope:'openid projects-api profile',
             response_type:'id_token token',
             post_logout_redirect_url:'http://localhost:4200/?postLogout=true',
-            userStore:new WebStorageStateStore({store:window.localStorage})
+            userStore:new WebStorageStateStore({store:window.localStorage}),
+            automaticSilentRenew:true
         };
         this._userManager=new UserManager(config);
         this._userManager.getUser().then(user=>{
